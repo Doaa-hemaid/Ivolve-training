@@ -1,1 +1,19 @@
-Lab1
+# create new group with name ivolve 
+sudo groupadd ivolve
+# create new user
+sudo useradd Dev.Doaa.Hemaid 
+sudo passwd Dev.Doaa.Hemaid
+# add user to ivolve group [secondary group]
+sudo usermod -aG ivolve  Dev.Doaa.Hemaid
+-------------------------------------------------------
+# configure user's permission to allow installing nginx using the sudo tool 'run the command without password' 
+# edit the sudoers file 
+sudo visudo
+# under the User privilege specification section add  
+Dev.Doaa.Hemaid  ALL=(ALL) NOPASSWD: /usr/bin/apt install nginx
+-------------------------------
+# test
+#switch user to Dev.Doaa.Hemaid
+su - Dev.Doaa.Hemaid
+sudo apt install   nginx
+---------------------------------------------------
