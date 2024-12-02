@@ -52,7 +52,6 @@ using `fdisk /dev/sdb`
  
  ![mount](https://github.com/user-attachments/assets/974ae1d2-515a-4480-8065-f1bd55d3764d)    
 
-***
 
  ### Permanent Mount   
  1. **Get the UUID of the Partition or Volume**   
