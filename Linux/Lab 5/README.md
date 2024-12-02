@@ -32,8 +32,7 @@ using `fdisk /dev/sdb`
    ![vg before extend](https://github.com/user-attachments/assets/0e43f457-123f-4b9b-aa48-005182125bc8)   
 
 3. **Create a Logical Volume (LV):**  
-
-    `sudo lvcreate --size +5G --name my_logical_volume my_volume_group`  
+   `sudo lvcreate --size +5G --name my_logical_volume my_volume_group`  
   
    ![lv before](https://github.com/user-attachments/assets/05461e0a-c488-4d21-8b25-fa602d7aa2de)   
 
@@ -43,11 +42,11 @@ using `fdisk /dev/sdb`
    
    ![vg after](https://github.com/user-attachments/assets/09e48e77-f405-490f-a27c-76e5d2fb21eb)
 
-3. **Extend the Logical Volume:** 
+2. **Extend the Logical Volume:**   
     `sudo lvextend -L +3G /dev/my_volume_group/my_logical_volume`
    ![lv after](https://github.com/user-attachments/assets/2a2a570b-8ead-404f-b79c-7f7c2c99e406)
 
-### Mount Volumes
+### Mount Volumes  
  `mount /dev/my_volume_group/my_logical_volume /mydata`  
  
  ![mount](https://github.com/user-attachments/assets/974ae1d2-515a-4480-8065-f1bd55d3764d)  
