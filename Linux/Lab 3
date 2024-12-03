@@ -1,0 +1,18 @@
+# ping to every server in the 192.168.225.x  subnet (where x is a number between 0 and 255)
+# ping succeeds, display the message “Server 172.16.17.x is upand running” 
+# ping fails, display the message “Server 172.16.17.x is unreachable”.
+-------------------------------
+#write shell script ping_sweep.sh
+#!/bin/bash
+# Loop through the range 0-255
+for x in {0..255}; do
+  # Ping the server with a single packet and 1-second timeout
+  if ping -c 1 -W 1 192.168.225.$x &> /dev/null; then
+    echo "Server 192.168.225.$x is up and running"
+  else
+    echo "Server 192.168.225.$x is unreachable"
+  fi
+done
+-----------------------------
+# run 
+./ping_sweep.sh

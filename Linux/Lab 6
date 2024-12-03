@@ -1,0 +1,43 @@
+# SSH Configuration Setup
+
+# 1. Install OpenSSH Server
+# This command installs the OpenSSH server package, enabling SSH access to the machine.
+sudo apt install openssh-server -y
+----------------
+# 2. Enable and Start the SSH Service
+# Ensure the SSH service is enabled to start on boot and is currently running.
+sudo systemctl enable ssh
+sudo systemctl start ssh
+sudo systemctl status ssh  # Verify that the SSH service is active and running
+-------------------
+# 3. Generate SSH Keys
+# Generate a new RSA key pair (private and public) for secure authentication.
+# The key will be stored in the specified file (ivolve_key).
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/ivolve_key
+
+# 4. Copy Public SSH Key to Remote Machine
+# Use ssh-copy-id to copy the public key to the remote server's authorized_keys file.
+# This allows passwordless login for the user 'doaa' on the remote machine (IP: 192.168.225.129).
+ssh-copy-id -i ~/.ssh/ivolve_key.pub doaa@192.168.225.129 
+
+# 5. Establish SSH Connection
+# Connect to the remote server using the private key for authentication.
+# This will prompt for the passphrase if one was set during key generation.
+ssh -i ~/.ssh/ivolve_key doaa@192.168.225.129
+------------------------------------
+# 6. Configure SSH to Use an Alias
+# Edit the SSH configuration file to create an alias for the remote connection.
+# This allows you to connect to the remote server using the simple command 'ssh ivolve'.
+vim ~/.ssh/config
+
+# Add a new host configuration for 'ivolve' with the following settings:
+Host ivolve
+    HostName 192.168.225.129  # Remote server's IP address
+    User doaa                 # Username for login
+    IdentityFile ~/.ssh/ivolve_key  # Path to the private key for authentication
+
+-------------------
+# 7. Test Connection with Alias
+# Now, you can simply use the alias 'ivolve' to establish an SSH connection to the remote server.
+# The SSH client will automatically use the settings defined in ~/.ssh/config.
+ssh ivolve
