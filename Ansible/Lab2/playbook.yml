@@ -1,0 +1,21 @@
+---
+- name: Install Nginx and deploy index.html
+  hosts: webservers
+  become: yes  # Run tasks as a privileged user
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    - name: Copy index.html to the server
+      copy:
+        src: ./index.html  
+        dest: /var/www/html/index.html
+
+    - name: Ensure Nginx is started and enabled
+      service:
+        name: nginx
+        state: started
+        enabled: yes
