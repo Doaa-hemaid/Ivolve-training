@@ -1,0 +1,10 @@
+---
+plugin: amazon.aws.aws_ec2
+regions:
+  - us-east-1
+filters:
+  "tag:Name": servers  
+keyed_groups:
+  - key: tags.Name  # Group by EC2 tags, if needed
+    prefix: iVolve
+

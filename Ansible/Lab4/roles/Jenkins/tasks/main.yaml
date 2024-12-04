@@ -1,0 +1,32 @@
+---
+- name: Update apt package index
+  apt:
+    update_cache: yes
+- name: Install fontconfig
+  shell: apt install fontconfig -y
+- name: Install Java (required by Jenkins)
+  shell: apt install fontconfig openjdk-17-jre -y
+- name: Download Jenkins repository key
+  get_url:
+    url: https://pkg.jenkins.io/debian/jenkins.io-2023.key
+    dest: /usr/share/keyrings/jenkins-keyring.asc
+
+- name: Add Jenkins repository
+  apt_repository:
+    repo: 'deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] http://pkg.jenkins.io/debian-stable binary/'
+    state: present
+    filename: jenkins.list
+- name: Update apt package index (after adding Jenkins repo)
+  apt:
+    update_cache: yes
+
+- name: Install Jenkins
+  apt:
+    name: jenkins
+    state: present
+
+- name: Start and enable Jenkins service
+  systemd:
+    name: jenkins
+    state: started
+    enabled: yes
