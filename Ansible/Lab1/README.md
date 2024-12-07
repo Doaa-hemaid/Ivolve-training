@@ -17,15 +17,16 @@ Deploy and configure the Ansible Automation Platform on control nodes, create in
 ### 2. **Configure ansible.cfg file**
  ```ini
  [defaults]
- private_key_file =./Ec2Key.pem
- user = ubuntu
+user = dhemaid
+inventory = ./inventory
  ``` 
 ### 3. **Create An Inventory File**
  ```ini
  [webservers]
- ec2-instance ansible_host=52.23.161.219
+ dhemaid@192.168.225.131
  ```
 ### 4. **Execute Ad-hoc Commands**
  ```bash
  ansible all -a "df -h"
  ```
+![2024-12-08 00_29_41-doaa-hemaid@ubuntu_ ~_Lab1](https://github.com/user-attachments/assets/d62b30b4-7474-4ec9-af1f-7c7735c683d1)
