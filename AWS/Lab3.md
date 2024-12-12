@@ -60,7 +60,7 @@
       yum install httpd -y
       systemctl start httpd
       systemctl enable httpd
-      echo "Hello World from Nginx Apache" > /var/www/html/index.html
+      echo "Hello World from Apache" > /var/www/html/index.html
       ```
       ![chrome-capture (18)](https://github.com/user-attachments/assets/9350c9b6-ef69-488a-ac7a-f79bb9d1e4bd)
 
