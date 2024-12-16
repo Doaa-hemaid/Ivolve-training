@@ -25,7 +25,7 @@ kubectl get namespaces
  ```
 ![2024-12-16 14_44_45-dhemaid@localhost_~](https://github.com/user-attachments/assets/ca2b2159-a0db-49a6-9f70-cf7e686f6502)
 
-## 2. Install Jenkins ('Master' Linux, Ubuntu)
+## 2. Install Jenkins Master ( Linux, Ubuntu)
   ### 2.1 [Install Java](https://www.jenkins.io/doc/book/installing/linux/#installation-of-java)
   ```bash
   sudo apt update
