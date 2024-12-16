@@ -25,6 +25,19 @@ kubectl get namespaces
  ```
 ![2024-12-16 14_44_45-dhemaid@localhost_~](https://github.com/user-attachments/assets/ca2b2159-a0db-49a6-9f70-cf7e686f6502)
 
+### 1.4 Create Service Accounts and Role Bindings for Each Namespace (dev, prod, test)
+```bash
+kubectl create serviceaccount <service-account-name> -n <namespace>
+kubectl create rolebinding jenkins-rolebinding --role=edit --serviceaccount=<namespace>:<service-account-name> -n <namespace>
+```
+### 1.5 Kubeconfig File Configuration  
+- Jenkins needs to know where to find the Kubeconfig file.
+- Export the KUBECONFIG environment variable to point to the correct file
+```bash
+scp ~/.kube/config <jenkins-slave-ip>:/var/jenkins_home/.kube/config
+export KUBECONFIG=~/.kube/config # slave vm & user jenkins
+```
+
 ## 2. Install Jenkins Master ( Linux, Ubuntu)
   ### 2.1 [Install Java](https://www.jenkins.io/doc/book/installing/linux/#installation-of-java)
   ```bash
@@ -101,6 +114,21 @@ sudo systemctl status jenkins
 12. **Click 'Save'**
     
  ![2024-12-16 16_16_41-slave01  Jenkins](https://github.com/user-attachments/assets/42e9dff6-88aa-48b6-944f-d39ca347a734)
+### 3.5 Essential Jenkins Plugins
+- Docker Pipeline Plugin
+- Kubernetes Plugin
+- Git Plugin
+
+### 3.6 Add Credentials for Each Namespace
+1. **Click 'Add Credentials'**.
+2. **Kind**: Secret text.
+3. **ID**: Choose a unique identifier (e.g., `k8s-dev`).
+4. **Secret**:
+   - **Username**: `jenkins-prod`
+   - **Secret Value**: `<token>` (Replace `<token>` with the actual token associated with the `jenkins-prod` service account).
+5. **Click 'OK'**.
+   
+![2024-12-16 18_46_15-Jenkins » Credentials  Jenkins](https://github.com/user-attachments/assets/c077debc-294d-4d00-aad6-3cc6de950b8d)
 
 ## 4. Automated Deployments
 ### 4.1 Create a MultiBranch Pipeline Project
