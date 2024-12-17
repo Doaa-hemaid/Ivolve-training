@@ -1,4 +1,4 @@
-# Lab 30: Kubernetes Security and RBAC
+#  Kubernetes Security and RBAC
 
 ## Objectives
 - Create a **Service Account**.
@@ -87,6 +87,12 @@ kubectl describe secret user1-token -n default
 ```
 
 ![2024-12-17 11_53_58-dhemaid@localhost_~](https://github.com/user-attachments/assets/69514006-f513-40d2-b38a-23985d83bafa)
+
+```bash
+kubectl auth can-i create deployments --as=system:serviceaccount:default:user1
+kubectl auth can-i list pods --as=system:serviceaccount:default:user1
+```
+![2024-12-17 12_50_47-dhemaid@localhost_~](https://github.com/user-attachments/assets/c140d359-4e83-4777-b44e-f3b96ea07b16)
 
 ---
 
