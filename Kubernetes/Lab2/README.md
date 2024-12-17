@@ -72,7 +72,7 @@ spec:
  ```
 
 ## Deploy and Test in Minikube
-Apply the MySQL StatefulSet YAML & MySQL Service YAML:
+**Apply the MySQL StatefulSet YAML & MySQL Service YAML:**
  ```bash
 kubectl apply -f mysql-statefulset.yaml
 kubectl apply -f mysql-service.yaml
@@ -84,7 +84,7 @@ kubectl get pods
  ```
 ![2024-12-17 08_28_44-dhemaid@localhost_~](https://github.com/user-attachments/assets/a7a5efa5-49b0-4f5b-81cf-cbae3f00f8a6)
 
-## Access MySQL Pods
+**Access MySQL Pods:**
  ```bash
 kubectl exec -it mysql-0 -- mysql -u root -prootpassword
  ```
