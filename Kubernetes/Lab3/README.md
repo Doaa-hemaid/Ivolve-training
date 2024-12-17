@@ -141,8 +141,7 @@ kubectl apply -f deployment-with-pvc.yaml
 
 | **Persistent Volumes (PV)** |
 |-------------------------------|
-Persistent Volumes are a way to abstract and represent physical or networked storage resources in a cluster. They serve as the “backend” storage configuration in a Kubernetes cluster.
-
+PersistentVolume (PV) is a piece of storage within the cluster that has been provisioned by an administrator or dynamically provisioned using Storage Classes. PV is an abstraction for the physical storage device that you have attached to the cluster
 ### Features:
 
 - **Resource Abstraction**: PVs decouple storage from applications, enabling easier management of storage resources.
@@ -152,8 +151,7 @@ Persistent Volumes are a way to abstract and represent physical or networked sto
 
 | **Persistent Volume Claims (PVC)** |
 |-----------------------------------|
-Persistent Volume Claims act as requests for storage by pods. They are used by developers to specify their storage requirements.
-
+A PersistentVolumeClaim (PVC) is a request for storage by a user. The claim can include specific storage parameters required by the application. For example, an amount of storage, or a specific type of access (RWO – ReadWriteOnce, ROX – ReadOnlyMany, RWX – ReadWriteMany, etc.).
 ### Features:
 
 - **Resource Request**: PVCs let developers request storage without needing to understand the underlying infrastructure, simplifying application scaling.
@@ -162,12 +160,12 @@ Persistent Volume Claims act as requests for storage by pods. They are used by d
 
 | **Storage Classes** |
 |---------------------|
-Storage Classes are an abstraction layer over the underlying storage infrastructure. They define the properties and behavior of PVs dynamically provisioned from them.
-
+Storage Class allows the provision of Kubernetes persistent storage dynamically. With a storage class, administrators need not create a persistent volume separately before claiming it. Administrators can define several StorageClasses that give users multiple options for performance. For example, one can be on a fast SSD drive, it also supports Cloud Storage Services like AWS EBS, AzureDisk, GCEPersistentDisk, etc.
 ### Features:
 
 - **Dynamic Provisioning**: Automates the creation of PVs with specific attributes (e.g., storage type, access mode), simplifying storage management.
 - **Resource Optimization**: Matches storage resources to application needs, ensuring efficient and appropriate storage allocation.
 - **Scaling and Automation**: Enables administrators to define policies for storage allocation, supporting scalability and streamlined automation.
 
+![147](https://github.com/user-attachments/assets/087aaf28-4ae7-4d8a-b577-5984733e619f)
 
